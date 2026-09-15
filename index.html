@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Platanal - En Busca de Sari</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="game-window">
+
+    <!-- PANTALLA INTRO -->
+    <div id="screen-intro" class="screen">
+      <h1>EL PLATANAL</h1>
+      <div class="story-card">
+        <p>En el peligroso mundo de <strong>El Platanal</strong>, la horda de monos ha secuestrado a la princesa <strong>Sari</strong> de Israel.</p>
+        <br>
+        <p>Tu objetivo es cruzar los 10 niveles extra largos llenos de monos, juntar plátanos y rescatar a Sari.</p>
+      </div>
+      <button id="btn-to-select" class="btn">CONTINUAR</button>
+    </div>
+
+    <!-- SELECCIÓN DE PERSONAJE -->
+    <div id="screen-select" class="screen hidden">
+      <h2>SELECCIONA TU HÉROE</h2>
+      <p style="margin-bottom: 10px;">Supera niveles para desbloquear más personajes</p>
+      <div class="char-grid" id="char-grid"></div>
+      <button id="btn-start-game" class="btn">INICIAR MISIÓN</button>
+    </div>
+
+    <!-- PANTALLA DE JUEGO -->
+    <div id="screen-game" class="screen hidden">
+      <div class="hud">
+        <div>🍌 <span id="hud-bananas">0</span></div>
+        <div>🏆 NIVEL <span id="hud-level">1</span>/10</div>
+        <div>⚡ PODER: <span id="hud-power">LISTO</span></div>
+      </div>
+
+      <canvas id="gameCanvas" width="800" height="400"></canvas>
+      <div class="controls-hint">Controles: [A][D] Mover | [W] Saltar | [ESPACIO] Poder Especial</div>
+
+      <div class="touch-controls">
+        <button class="t-btn" id="btn-left">◀</button>
+        <button class="t-btn" id="btn-right">▶</button>
+        <button class="t-btn" id="btn-jump">▲</button>
+        <button class="t-btn" id="btn-power">⚡</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
