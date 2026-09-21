@@ -3,42 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Platanal - En Busca de Sari</title>
+  <title>El Platanal - Edición Definitiva</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="game-window">
+  <div class="hud-container game-window">
+    <header class="hud-header">
+      <div>Bananas: 🍌 <span id="banana-count">0</span></div>
+      <div>Héroe: <span id="selected-char-name">PJ X</span></div>
+      <div id="coords-hud">POS: 0 , 0</div>
+    </header>
 
-    <!-- PANTALLA INTRO -->
-    <div id="screen-intro" class="screen">
-      <h1>EL PLATANAL</h1>
-      <div class="story-card">
-        <p>En el peligroso mundo de <strong>El Platanal</strong>, la horda de monos ha secuestrado a la princesa <strong>Sari</strong> de Israel.</p>
-        <br>
-        <p>Tu objetivo es cruzar los 10 niveles extra largos llenos de monos, juntar plátanos y rescatar a Sari.</p>
+    <!-- 1. MENÚ PRINCIPAL -->
+    <section id="main-menu" class="screen active">
+      <h1 class="game-title">EL PLATANAL</h1>
+      <p class="subtitle">Rescate en el Reino de los Simios</p>
+      <div class="menu-buttons">
+        <button class="btn-hud" onclick="showScreen('map-screen')">Mapa de Niveles</button>
+        <button class="btn-hud btn-secret" onclick="trySecretLevel('ethan')">Nivel Secreto: Yesenia 🔒</button>
+        <button class="btn-hud btn-secret" onclick="trySecretLevel('ebed')">Nivel Secreto: Jeyci 🔒</button>
+        <button class="btn-hud" onclick="showScreen('shop-screen')">Tienda de Bananas</button>
+        <button class="btn-hud" onclick="showScreen('char-screen')">Selección de Héroes</button>
       </div>
-      <button id="btn-to-select" class="btn">CONTINUAR</button>
-    </div>
+    </section>
 
-    <!-- SELECCIÓN DE PERSONAJE -->
-    <div id="screen-select" class="screen hidden">
-      <h2>SELECCIONA TU HÉROE</h2>
-      <p style="margin-bottom: 10px;">Supera niveles para desbloquear más personajes</p>
+    <!-- 2. MAPA ISOMÉTRICO -->
+    <section id="map-screen" class="screen">
+      <div class="canvas-wrapper" id="wrapper">
+        <canvas id="mapCanvas"></canvas>
+        <div class="info-card" id="infoCard">
+          <h4 id="cardTitle">Nivel 1</h4>
+          <p id="cardDesc">Zona Central</p>
+          <button class="btn-hud" onclick="confirmStartMission()">Desplegar Misión</button>
+        </div>
+      </div>
+      <div style="padding: 5px; width: 100%;">
+        <button class="btn-hud btn-back" onclick="showScreen('main-menu')">Volver al Menú</button>
+      </div>
+    </section>
+
+    <!-- 3. TIENDA DE MEJORAS -->
+    <section id="shop-screen" class="screen">
+      <h2 style="color: var(--accent); margin-bottom: 15px;">TIENDA DEL PLATANAL</h2>
+      <div class="shop-grid">
+        <div class="shop-card">
+          <h3>Poción Salto Aumentado</h3>
+          <p>Incrementa el impulso de salto del héroe.</p>
+          <button class="btn-hud" onclick="buyItem('jump', 30)">Comprar (30 🍌)</button>
+        </div>
+        <div class="shop-card">
+          <h3>Botas de Velocidad</h3>
+          <p>Aumenta la velocidad de movimiento.</p>
+          <button class="btn-hud" onclick="buyItem('speed', 50)">Comprar (50 🍌)</button>
+        </div>
+      </div>
+      <button class="btn-hud btn-back" onclick="showScreen('main-menu')">Volver al Menú</button>
+    </section>
+
+    <!-- 4. SELECCIÓN DE PERSONAJES -->
+    <section id="char-screen" class="screen">
+      <h2 style="color: var(--primary); margin-bottom: 10px;">SELECCIONA TU HÉROE</h2>
+      <p style="font-size: 11px; color: #aaa; margin-bottom: 10px;">Supera niveles para desbloquear más personajes</p>
       <div class="char-grid" id="char-grid"></div>
-      <button id="btn-start-game" class="btn">INICIAR MISIÓN</button>
-    </div>
+      <button class="btn-hud btn-back" onclick="showScreen('main-menu')">Volver al Menú</button>
+    </section>
 
-    <!-- PANTALLA DE JUEGO -->
-    <div id="screen-game" class="screen hidden">
-      <div class="hud">
-        <div>🍌 <span id="hud-bananas">0</span></div>
-        <div>🏆 NIVEL <span id="hud-level">1</span>/10</div>
-        <div>⚡ PODER: <span id="hud-power">LISTO</span></div>
+    <!-- 5. PANTALLA DE JUEGO -->
+    <section id="game-screen" class="screen">
+      <div class="game-hud">
+        <span>NIVEL: <span id="hud-level">1</span></span>
+        <span>BANANAS: 🍌 <span id="hud-bananas">0</span></span>
+        <span>PODER: <span id="hud-power" style="color: var(--primary);">LISTO</span></span>
       </div>
 
-      <canvas id="gameCanvas" width="800" height="400"></canvas>
-      <div class="controls-hint">Controles: [A][D] Mover | [W] Saltar | [ESPACIO] Poder Especial</div>
+      <canvas id="gameCanvas" width="850" height="400"></canvas>
 
       <div class="touch-controls">
         <button class="t-btn" id="btn-left">◀</button>
@@ -46,8 +85,16 @@
         <button class="t-btn" id="btn-jump">▲</button>
         <button class="t-btn" id="btn-power">⚡</button>
       </div>
-    </div>
 
+      <!-- MODAL FIN DE NIVEL -->
+      <div id="end-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3 id="end-title">¡NIVEL COMPLETADO!</h3>
+          <p id="end-text">Avanzaste con éxito.</p>
+          <button class="btn-hud" onclick="finishLevelAndReturn()">CONTINUAR</button>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script src="script.js"></script>
