@@ -1,18 +1,18 @@
 // 13 PERSONAJES EN EL ORDEN EXACTO SOLICITADO CON SUS PODERES
 const CHARACTERS = [
-  { id: 0, name: "PJ X", image: "ASSETS/IMG/hero/PJX.png", desc: "Explorador novato básico.", powerDesc: "Salto de Fe: Impulso frontal.", speed: 5, jump: 11 },
-  { id: 1, name: "Ethan", image: "ASSETS/IMG/hero/ethan.png", desc: "Cocinero con dinero y extraña a la ex.", powerDesc: "Lluvia de dinero de la ex.", speed: 5, jump: 12 },
-  { id: 2, name: "Miguel", image: "ASSETS/IMG/hero/miguel.png", desc: "Futbolista y programador.", powerDesc: "Disparo de balón gigantesco.", speed: 6, jump: 12 },
-  { id: 3, name: "Matteo", image: "ASSETS/IMG/hero/mateo.png", desc: "Maestro del beso del bocachico.", powerDesc: "Explosión de beso cercano.", speed: 5, jump: 14 },
-  { id: 4, name: "Emmanuel", image: "ASSETS/IMG/hero/emmanuel.png", desc: "Futbolista alto, parador de bolas.", powerDesc: "Escudo muralla destructor.", speed: 4, jump: 13 },
-  { id: 5, name: "Ebed", image: "ASSETS/IMG/hero/ebed.png", desc: "Músico que le escribe canciones a la ex.", powerDesc: "Notas musicales mortales.", speed: 5, jump: 12 },
-  { id: 6, name: "Luis", image: "ASSETS/IMG/hero/luis.png", desc: "Amante del básquetbol y calistenia.", powerDesc: "Mate sónico de básquetbol.", speed: 6, jump: 13 },
-  { id: 7, name: "Manu", image: "ASSETS/IMG/hero/manu.png", desc: "Guajiro traguero y abogado del diablo.", powerDesc: "Defensa diabólica total.", speed: 5, jump: 11 },
-  { id: 8, name: "Juan", image: "ASSETS/IMG/hero/juan.png", desc: "Jugador de rugby invulnerable.", powerDesc: "Embestida de rugby invulnerable.", speed: 6, jump: 11 },
-  { id: 9, name: "Carlos", image: "ASSETS/IMG/hero/carlos.png", desc: "Toca guitarra y juega vóleibol.", powerDesc: "Remate sónico eléctrico.", speed: 5, jump: 13 },
-  { id: 10, name: "Aníbal", image: "ASSETS/IMG/hero/anibal.png", desc: "Estilo muralla contable.", powerDesc: "Balance contable y recolección.", speed: 4, jump: 11 },
-  { id: 11, name: "Camilo", image: "ASSETS/IMG/hero/camilo.png", desc: "Amante de dinosaurios y videojuegos.", powerDesc: "Rugido de dinosaurio estelar.", speed: 6, jump: 12 },
-  { id: 12, name: "Gleimer", image: "ASSETS/IMG/hero/gleimer.png", desc: "Creador, deportista y programador.", powerDesc: "Poder del Creador: Limpia el nivel.", speed: 7, jump: 15 }
+  { id: 0, name: "PJ X", image: "ASSETS/hero/PJX.png", desc: "Explorador novato básico.", powerDesc: "Salto de Fe: Impulso frontal.", speed: 5, jump: 11 },
+  { id: 1, name: "Ethan", image: "ASSETS/hero/ethan.png", desc: "Cocinero con dinero y extraña a la ex.", powerDesc: "Lluvia de dinero de la ex.", speed: 5, jump: 12 },
+  { id: 2, name: "Miguel", image: "ASSETS/hero/miguel.png", desc: "Futbolista y programador.", powerDesc: "Disparo de balón gigantesco.", speed: 6, jump: 12 },
+  { id: 3, name: "Matteo", image: "ASSETS/hero/mateo.png", desc: "Maestro del beso del bocachico.", powerDesc: "Explosión de beso cercano.", speed: 5, jump: 14 },
+  { id: 4, name: "Emmanuel", image: "ASSETS/hero/emmanuel.png", desc: "Futbolista alto, parador de bolas.", powerDesc: "Escudo muralla destructor.", speed: 4, jump: 13 },
+  { id: 5, name: "Ebed", image: "ASSETS/hero/ebed.png", desc: "Músico que le escribe canciones a la ex.", powerDesc: "Notas musicales mortales.", speed: 5, jump: 12 },
+  { id: 6, name: "Luis", image: "ASSETS/hero/luis.png", desc: "Amante del básquetbol y calistenia.", powerDesc: "Mate sónico de básquetbol.", speed: 6, jump: 13 },
+  { id: 7, name: "Manu", image: "ASSETS/hero/manu.png", desc: "Guajiro traguero y abogado del diablo.", powerDesc: "Defensa diabólica total.", speed: 5, jump: 11 },
+  { id: 8, name: "Juan", image: "ASSETS/hero/juan.png", desc: "Jugador de rugby invulnerable.", powerDesc: "Embestida de rugby invulnerable.", speed: 6, jump: 11 },
+  { id: 9, name: "Carlos", image: "ASSETS/hero/carlos.png", desc: "Toca guitarra y juega vóleibol.", powerDesc: "Remate sónico eléctrico.", speed: 5, jump: 13 },
+  { id: 10, name: "Aníbal", image: "ASSETS/hero/anibal.png", desc: "Estilo muralla contable.", powerDesc: "Balance contable y recolección.", speed: 4, jump: 11 },
+  { id: 11, name: "Camilo", image: "ASSETS/hero/camilo.png", desc: "Amante de dinosaurios y videojuegos.", powerDesc: "Rugido de dinosaurio estelar.", speed: 6, jump: 12 },
+  { id: 12, name: "Gleimer", image: "ASSETS/hero/gleimer.png", desc: "Creador, deportista y programador.", powerDesc: "Poder del Creador: Limpia el nivel.", speed: 7, jump: 15 }
 ];
 
 const loadedImages = {};
@@ -26,19 +26,19 @@ CHARACTERS.forEach(char => {
 
 // NIVELES CON PAÍSES, VILLANOS Y LONGITUDES PROGRESIVAS
 const LEVEL_CONFIGS = {
-  1: { id: 1, name: "Nivel 1: Colombia", country: "Colombia", villainImg: "ASSETS/IMG/villanos/colombia-removebg-preview.png", monkeyCount: 3, obstacleCount: 3, speedMult: 1.0, worldWidth: 2000 },
-  2: { id: 2, name: "Nivel 2: México", country: "México", villainImg: "ASSETS/IMG/villanos/mexico-removebg-preview.png", monkeyCount: 4, obstacleCount: 4, speedMult: 1.2, worldWidth: 2300 },
-  3: { id: 3, name: "Nivel 3: Venezuela", country: "Venezuela", villainImg: "ASSETS/IMG/villanos/venezuela-removebg-preview.png", monkeyCount: 5, obstacleCount: 5, speedMult: 1.3, worldWidth: 2600 },
-  4: { id: 4, name: "Nivel 4: Argentina", country: "Argentina", villainImg: "ASSETS/IMG/villanos/argentina-removebg-preview.png", monkeyCount: 6, obstacleCount: 6, speedMult: 1.4, worldWidth: 2900 },
-  5: { id: 5, name: "Nivel 5: Brasil", country: "Brasil", villainImg: "ASSETS/IMG/villanos/colombia-removebg-preview.png", monkeyCount: 7, obstacleCount: 7, speedMult: 1.5, worldWidth: 3200 },
-  6: { id: 6, name: "Nivel 6: Estados Unidos", country: "Estados Unidos", villainImg: "ASSETS/IMG/villanos/estados unidos-removebg-preview.png", monkeyCount: 8, obstacleCount: 8, speedMult: 1.6, worldWidth: 3500 },
-  7: { id: 7, name: "Nivel 7: Italia", country: "Italia", villainImg: "ASSETS/IMG/villanos/italia-removebg-preview.png", monkeyCount: 9, obstacleCount: 9, speedMult: 1.7, worldWidth: 3800 },
-  8: { id: 8, name: "Nivel 8: China", country: "China", villainImg: "ASSETS/IMG/villanos/china-removebg-preview.png", monkeyCount: 10, obstacleCount: 10, speedMult: 1.8, worldWidth: 4100 },
-  9: { id: 9, name: "Nivel 9: Egipto", country: "Egipto", villainImg: "ASSETS/IMG/villanos/egpicio-removebg-preview.png", monkeyCount: 11, obstacleCount: 11, speedMult: 2.0, worldWidth: 4400 },
-  10: { id: 10, name: "Nivel 10: Territorio Salvaje", country: "Mundo", villainImg: "ASSETS/IMG/villanos/colombia-removebg-preview.png", monkeyCount: 12, obstacleCount: 12, speedMult: 2.2, worldWidth: 4700 },
-  11: { id: 11, name: "Nivel 11: Israel (Jefe Final)", country: "Israel", villainImg: "ASSETS/IMG/villanos/final-removebg-preview.png", monkeyCount: 1, obstacleCount: 14, speedMult: 2.5, worldWidth: 5000, isIsrael: true },
-  secret_ethan: { id: 99, name: "Secreto: Yesenia", country: "Secreto", villainImg: "ASSETS/IMG/villanos/colombia-removebg-preview.png", monkeyCount: 8, obstacleCount: 6, speedMult: 1.5, worldWidth: 3000 },
-  secret_ebed: { id: 100, name: "Secreto: Jeyci", country: "Secreto", villainImg: "ASSETS/IMG/villanos/colombia-removebg-preview.png", monkeyCount: 8, obstacleCount: 6, speedMult: 1.5, worldWidth: 3000 }
+  1: { id: 1, name: "Nivel 1: Colombia", country: "Colombia", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 3, obstacleCount: 3, speedMult: 1.0, worldWidth: 2000 },
+  2: { id: 2, name: "Nivel 2: México", country: "México", villainImg: "ASSETS/villanos/mexico-removebg-preview.png", monkeyCount: 4, obstacleCount: 4, speedMult: 1.2, worldWidth: 2300 },
+  3: { id: 3, name: "Nivel 3: Venezuela", country: "Venezuela", villainImg: "ASSETS/villanos/venezuela-removebg-preview.png", monkeyCount: 5, obstacleCount: 5, speedMult: 1.3, worldWidth: 2600 },
+  4: { id: 4, name: "Nivel 4: Argentina", country: "Argentina", villainImg: "ASSETS/villanos/argentina-removebg-preview.png", monkeyCount: 6, obstacleCount: 6, speedMult: 1.4, worldWidth: 2900 },
+  5: { id: 5, name: "Nivel 5: Brasil", country: "Brasil", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 7, obstacleCount: 7, speedMult: 1.5, worldWidth: 3200 },
+  6: { id: 6, name: "Nivel 6: Estados Unidos", country: "Estados Unidos", villainImg: "ASSETS/villanos/estados unidos-removebg-preview.png", monkeyCount: 8, obstacleCount: 8, speedMult: 1.6, worldWidth: 3500 },
+  7: { id: 7, name: "Nivel 7: Italia", country: "Italia", villainImg: "ASSETS/villanos/italia-removebg-preview.png", monkeyCount: 9, obstacleCount: 9, speedMult: 1.7, worldWidth: 3800 },
+  8: { id: 8, name: "Nivel 8: China", country: "China", villainImg: "ASSETS/villanos/china-removebg-preview.png", monkeyCount: 10, obstacleCount: 10, speedMult: 1.8, worldWidth: 4100 },
+  9: { id: 9, name: "Nivel 9: Egipto", country: "Egipto", villainImg: "ASSETS/villanos/egpicio-removebg-preview.png", monkeyCount: 11, obstacleCount: 11, speedMult: 2.0, worldWidth: 4400 },
+  10: { id: 10, name: "Nivel 10: Territorio Salvaje", country: "Mundo", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 12, obstacleCount: 12, speedMult: 2.2, worldWidth: 4700 },
+  11: { id: 11, name: "Nivel 11: Israel (Jefe Final)", country: "Israel", villainImg: "ASSETS/villanos/final-removebg-preview.png", monkeyCount: 1, obstacleCount: 14, speedMult: 2.5, worldWidth: 5000, isIsrael: true },
+  secret_ethan: { id: 99, name: "Secreto: Yesenia", country: "Secreto", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 8, obstacleCount: 6, speedMult: 1.5, worldWidth: 3000 },
+  secret_ebed: { id: 100, name: "Secreto: Jeyci", country: "Secreto", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 8, obstacleCount: 6, speedMult: 1.5, worldWidth: 3000 }
 };
 
 const villainImages = {};
@@ -56,9 +56,9 @@ const bgImages = {
   noche: new Image(),
   israel: new Image()
 };
-bgImages.dia.src = "ASSETS/IMG/fondos/dia.jpeg";
-bgImages.noche.src = "ASSETS/IMG/fondos/noche2.jpeg";
-bgImages.israel.src = "ASSETS/IMG/fondos/israel.jpeg";
+bgImages.dia.src = "ASSETS/fondos/dia.jpeg";
+bgImages.noche.src = "ASSETS/fondos/noche2.jpeg";
+bgImages.israel.src = "ASSETS/fondos/israel.jpeg";
 
 let currentBgType = "dia";
 setInterval(() => {
@@ -581,11 +581,9 @@ function gameLoop() {
     gCtx.save();
     if (villainImg && villainImg.complete && villainImg.naturalWidth !== 0) {
       if (e.isBoss) {
-        // Jefe final de Israel vuela y gira hacia la derecha hacia el prota
         gCtx.scale(-1, 1);
         gCtx.drawImage(villainImg, -(e.x + e.w), e.y, e.w, e.h);
       } else {
-        // Todos los demás villanos orientados estrictamente hacia la izquierda
         gCtx.scale(-1, 1);
         gCtx.drawImage(villainImg, -(e.x + e.w), e.y, e.w, e.h);
       }
