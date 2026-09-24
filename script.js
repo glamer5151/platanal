@@ -1,6 +1,6 @@
 // 13 PERSONAJES EN EL ORDEN EXACTO SOLICITADO CON SUS PODERES
 const CHARACTERS = [
-  { id: 0, name: "PJ X", image: "ASSETS/hero/PJX.png", desc: "Explorador novato básico.", powerDesc: "Salto de Fe: Impulso frontal.", speed: 5, jump: 11 },
+  { id: 0, name: "PJ X", image: "ASSETS/hero/PJ X.png", desc: "Explorador novato básico.", powerDesc: "Salto de Fe: Impulso frontal.", speed: 5, jump: 11 },
   { id: 1, name: "Ethan", image: "ASSETS/hero/ethan.png", desc: "Cocinero con dinero y extraña a la ex.", powerDesc: "Lluvia de dinero de la ex.", speed: 5, jump: 12 },
   { id: 2, name: "Miguel", image: "ASSETS/hero/miguel.png", desc: "Futbolista y programador.", powerDesc: "Disparo de balón gigantesco.", speed: 6, jump: 12 },
   { id: 3, name: "Matteo", image: "ASSETS/hero/mateo.png", desc: "Maestro del beso del bocachico.", powerDesc: "Explosión de beso cercano.", speed: 5, jump: 14 },
@@ -31,7 +31,7 @@ const LEVEL_CONFIGS = {
   3: { id: 3, name: "Nivel 3: Venezuela", country: "Venezuela", villainImg: "ASSETS/villanos/venezuela-removebg-preview.png", monkeyCount: 5, obstacleCount: 5, speedMult: 1.3, worldWidth: 2600 },
   4: { id: 4, name: "Nivel 4: Argentina", country: "Argentina", villainImg: "ASSETS/villanos/argentina-removebg-preview.png", monkeyCount: 6, obstacleCount: 6, speedMult: 1.4, worldWidth: 2900 },
   5: { id: 5, name: "Nivel 5: Brasil", country: "Brasil", villainImg: "ASSETS/villanos/colombia-removebg-preview.png", monkeyCount: 7, obstacleCount: 7, speedMult: 1.5, worldWidth: 3200 },
-  6: { id: 6, name: "Nivel 6: Estados Unidos", country: "Estados Unidos", villainImg: "ASSETS/villanos/estados unidos-removebg-preview.png", monkeyCount: 8, obstacleCount: 8, speedMult: 1.6, worldWidth: 3500 },
+  6: { id: 6, name: "Nivel 6: Estados Unidos", country: "Estados Unidos", villainImg: "ASSETS/villanos/estados_unidos-removebg-preview.png", monkeyCount: 8, obstacleCount: 8, speedMult: 1.6, worldWidth: 3500 },
   7: { id: 7, name: "Nivel 7: Italia", country: "Italia", villainImg: "ASSETS/villanos/italia-removebg-preview.png", monkeyCount: 9, obstacleCount: 9, speedMult: 1.7, worldWidth: 3800 },
   8: { id: 8, name: "Nivel 8: China", country: "China", villainImg: "ASSETS/villanos/china-removebg-preview.png", monkeyCount: 10, obstacleCount: 10, speedMult: 1.8, worldWidth: 4100 },
   9: { id: 9, name: "Nivel 9: Egipto", country: "Egipto", villainImg: "ASSETS/villanos/egpicio-removebg-preview.png", monkeyCount: 11, obstacleCount: 11, speedMult: 2.0, worldWidth: 4400 },
@@ -155,10 +155,13 @@ function renderCharGrid() {
   });
 }
 
-// MAPA ISOMÉTRICO
+// MAPA ISOMÉTRICO CON SOPORTE PARA FONDO
 const mapCanvas = document.getElementById('mapCanvas');
 const mCtx = mapCanvas.getContext('2d');
 const infoCard = document.getElementById('infoCard');
+
+const mapBgImage = new Image();
+mapBgImage.src = "ASSETS/mapa/mapa.jpeg";
 
 const tileWidth = 50;
 const tileHeight = 25;
@@ -198,6 +201,11 @@ function toIso(x, y) {
 let pulseAnim = 0;
 function renderMap() {
   mCtx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
+  
+  if (mapBgImage.complete && mapBgImage.naturalWidth !== 0) {
+    mCtx.drawImage(mapBgImage, 0, 0, mapCanvas.width, mapCanvas.height);
+  }
+
   pulseAnim += 0.05;
 
   levelsMapNodes.forEach(lvl => {
@@ -571,7 +579,7 @@ function gameLoop() {
   bananas.forEach(b => { if (!b.collected) gCtx.fillText("🍌", b.x, b.y + 20); });
   obstacles.forEach(o => gCtx.fillText(o.text, o.x, o.y + 25));
 
-  // VILLANOS: GIRO A LA IZQUIERDA (EXCEPTO JEFE FINAL EN ISRAEL QUE GIRA A LA DERECHA HACIA EL PROTA)
+  // VILLANOS
   enemies.forEach(e => {
     if (!e.alive) return;
     if (e.isBoss) {
@@ -592,7 +600,6 @@ function gameLoop() {
     }
     gCtx.restore();
 
-    // BARRA DE VIDA DEL VILLANO
     gCtx.fillStyle = "red";
     gCtx.fillRect(e.x, e.y - 12, e.w, 5);
     gCtx.fillStyle = "lime";
